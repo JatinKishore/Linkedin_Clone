@@ -21,7 +21,7 @@ const Header = (props) => {
             </Search>
             <Nav>
                 <NavListWrap>
-                    <NavList>
+                    <NavList className="active">
                         <a href="">
                             <img src="/images/nav-home.svg" alt="" />
                             <span>Home</span>
@@ -30,27 +30,48 @@ const Header = (props) => {
                     <NavList>
                         <a href="">
                             <img src="/images/nav-network.svg" alt="" />
-                            <span>Home</span>
+                            <span>My Network</span>
                         </a>
                     </NavList>
                     <NavList>
                         <a href="">
                             <img src="/images/nav-jobs.svg" alt="" />
-                            <span>Home</span>
+                            <span>Jobs</span>
                         </a>
                     </NavList>
                     <NavList>
                         <a href="">
                             <img src="/images/nav-messaging.svg" alt="" />
-                            <span>Home</span>
+                            <span>Messaging</span>
                         </a>
                     </NavList>
                     <NavList>
                         <a href="">
                             <img src="/images/nav-notifications.svg" alt="" />
-                            <span>Home</span>
+                            <span>Notifications</span>
                         </a>
                     </NavList>
+
+
+                    <User>
+                        <a href="">
+                            <img src="/images/user.svg" alt="" />
+                            <span>Me</span>
+                            <img src="/images/down-icon.svg" alt="" />
+                        </a>
+
+                        <SignOut>
+                            <a > Sign Out</a>
+                        </SignOut>
+                    </User>
+                    <Work>
+                        <a href="">
+                            <img src="/images/nav-work.svg" alt="" />
+                            <span>Work
+                                <img src="/images/down-icon.svg" alt="" />
+                            </span>
+                        </a>
+                    </Work>
                 </NavListWrap>
             </Nav>
             
@@ -118,13 +139,13 @@ const SearchIcon = styled.div`
     margin: 0;
     pointer-events: none;
     display: flex;
-    justify-contentL center;
+    justify-content: center;
     align-items: center;
 
 `;
 
 const Nav = styled.nav`
-    marigin-left: auto;
+    margin-left: auto;
     display: block;
     @media (max-width: 768px){
         position: fixed;
@@ -135,10 +156,25 @@ const Nav = styled.nav`
     }
 `;
 
-const NavListWrap = styled.div`
+const NavListWrap = styled.ul`
     display: flex;
     flex-wrap: none;
     list-style-type:none;
+
+    .active{
+        span:after{
+            content: "";
+            transform: scaleX(1);
+            border-bottom: 2px solid var(--white, #fff);
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            transition: transform 0.2s ease-in-out;
+            width: 100%;
+            border-color: rgba(0,0,0,0.9);
+
+        }
+    }
 `;
 const NavList = styled.div`
     display: flex;
@@ -151,7 +187,7 @@ const NavList = styled.div`
         flex-direction: column;
         font-size: 12px;
         font-weight: 400;
-        justify-contentL center;
+        justify-content: center;
         line-height: 1.5;
         min-height: 42px;
         min-width: 80px;
@@ -180,4 +216,50 @@ const NavList = styled.div`
     
     }
 `;
+
+const SignOut = styled.div`
+    position: absolute;
+    top: 45px;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    transition-duration: 167ms;
+    text-align: center;
+    display: none;
+`;
+const User = styled(NavList)`
+    a > svg {
+        width: 24px;
+        border-radius: 50%;        
+    }
+
+    a > img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+    }
+
+    span{
+        display: flex;
+        align-items: center;
+        justify-contens: center;
+    }
+
+    &:hover{
+        ${SignOut} {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+
+        }
+    }
+`;
+const Work = styled(User)`
+    border-left: 1px solid rgba(0,0,0,0.08);
+
+`;
+
+
 export default Header;
